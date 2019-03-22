@@ -3,7 +3,7 @@
 [![Total Downloads](https://poser.pugx.org/loveorigami/yii2-modal-ajax/downloads)](https://packagist.org/packages/loveorigami/yii2-modal-ajax)
 [![License](https://poser.pugx.org/loveorigami/yii2-modal-ajax/license)](https://packagist.org/packages/loveorigami/yii2-modal-ajax)
 
-A wrapper around Yii2 Bootstrap Modal for using an ActiveForm via AJAX inside.  
+A wrapper around Yii2 Bootstrap 4 Modal for using an ActiveForm via AJAX inside.  
 
 ## Installation
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
@@ -74,14 +74,14 @@ use lo\widgets\modal\ModalAjax;
 
 echo ModalAjax::widget([
     'id' => 'createCompany',
-    'header' => 'Create Company',
+    'title' => 'Create Company',
     'toggleButton' => [
         'label' => 'New Company',
         'class' => 'btn btn-primary pull-right'
     ],
     'url' => Url::to(['/partner/default/create']), // Ajax view with form to load
     'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
-    // ... any other yii2 bootstrap modal option you need
+    // ... any other yii2 bootstrap 4 modal option you need
 ]);
 ```
 
@@ -93,7 +93,7 @@ use lo\widgets\modal\ModalAjax;
 
 echo ModalAjax::widget([
     'id' => 'createCompany',
-    'header' => 'Create Company',
+    'title' => 'Create Company',
     'toggleButton' => [
         'label' => 'New Company',
         'class' => 'btn btn-primary pull-right'
@@ -182,7 +182,7 @@ Pjax::end();
 
 ## Plugin Events
 
-On top if the basic twitter bootstrap modal events the following events are triggered
+On top if the basic twitter bootstrap 4 modal events the following events are triggered
 
 
 ### `kbModalBeforeShow` (ModalAjax::EVENT_BEFORE_SHOW)

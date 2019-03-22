@@ -2,8 +2,7 @@
 
 namespace lo\widgets\modal;
 
-use yii\base\InvalidConfigException;
-use yii\bootstrap\Modal;
+use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\JsExpression;
@@ -83,26 +82,6 @@ class ModalAjax extends Modal
     protected $mode = self::MODE_SINGLE;
 
     /**
-     * Renders the header HTML markup of the modal
-     *
-     * @return string the rendering result
-     */
-    protected function renderHeader()
-    {
-        $button = $this->renderCloseButton();
-        if ($button !== null) {
-            $this->header = $button . "\n<span>" . $this->header . "</span>\n";
-        }
-        if ($this->header !== null) {
-            Html::addCssClass($this->headerOptions, ['widget' => 'modal-header']);
-
-            return Html::tag('div', "\n" . $this->header . "\n", $this->headerOptions);
-        } else {
-            return null;
-        }
-    }
-
-    /**
      * @inheritdocs
      */
     public function init()
@@ -137,7 +116,7 @@ class ModalAjax extends Modal
                 break;
 
             case self::MODE_MULTI:
-                $this->registerMultyModal($id, $view);
+                $this->registerMultiModal($id, $view);
                 break;
         }
 
@@ -159,7 +138,6 @@ class ModalAjax extends Modal
         $view->registerJs("
             jQuery('#$id').kbModalAjax({
                 url: '$url',
-                size:'sm',
                 ajaxSubmit: ".($this->ajaxSubmit ? "true" : "false")."
             });
         ");
@@ -169,7 +147,7 @@ class ModalAjax extends Modal
      * @param      $id
      * @param View $view
      */
-    protected function registerMultyModal($id, $view)
+    protected function registerMultiModal($id, $view)
     {
         $view->registerJs("
             jQuery('body').on('click', '$this->selector', function(e) {
@@ -182,7 +160,7 @@ class ModalAjax extends Modal
                 
                 if (!title) title = ' ';
                 
-                jQuery('#$id').find('.modal-header span').html(title);
+                jQuery('#$id').find('.modal-title').html(title);
                 
                 jQuery('#$id').kbModalAjax({
                     selector: $(this),
