@@ -11,12 +11,12 @@ use yii\web\AssetBundle;
  */
 class ModalAjaxAsset extends AssetBundle
 {
+
     /**
      * @inheritdoc
      */
     public $depends = [
         'yii\web\JqueryAsset',
-        'yii\bootstrap4\BootstrapAsset',
     ];
 
     /**

@@ -2,7 +2,8 @@
 
 namespace lo\widgets\modal;
 
-use yii\bootstrap4\Modal;
+use yii\base\Widget;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\JsExpression;
@@ -14,10 +15,13 @@ use yii\web\View;
  * @package lo\widgets\modal
  * @author  Lukyanov Andrey <loveorigami@mail.ru>
  */
-class ModalAjax extends Modal
+class ModalAjax extends Widget
 {
     const MODE_SINGLE = 'id';
     const MODE_MULTI = 'multi';
+
+    const BOOTSTRAP_VERSION_3 = 3;
+    const BOOTSTRAP_VERSION_4 = 4;
 
     /**
      * events
@@ -30,56 +34,106 @@ class ModalAjax extends Modal
     const EVENT_MODAL_SHOW_COMPLETE = 'kbModalShowComplete';
 
     /**
+     * @var int Twitter Bootstrap version
+     */
+    public $bootstrapVersion = self::BOOTSTRAP_VERSION_3;
+    /**
+     * @var array config for Modal Widget
+     * if `class` element is null, yii\bootstrap\Modal or yii\bootstrap4\Modal (according to $bootstrapVersion) will be used
+     */
+    public $modalWidgetConfig = [];
+    /**
      * @var array
      */
     public $events = [];
-
     /**
-     * The selector to get url request when modal is opened for multy mode
-     *
-     * @var string
+     * @var string The selector to get url request when modal is opened for multi mode
      */
     public $selector;
-
     /**
-     * The url to request when modal is opened for single mode
-     *
-     * @var string
+     * @var string The url to request when modal is opened for single mode
      */
     public $url;
-
     /**
-     * reload pjax container after ajaxSubmit
-     *
-     * @var string
+     * @var string reload pjax container after ajaxSubmit
      */
     public $pjaxContainer;
-
     /**
-     * timeout in miliseconds for pjax call
-     *
-     * @var string
+     * @var int timeout in milliseconds for pjax call
      */
     public $pjaxTimeout = 1000;
-
     /**
-     * Submit the form via ajax
-     *
-     * @var boolean
+     * @var boolean Submit the form via ajax
      */
     public $ajaxSubmit = true;
-
     /**
-     * Submit the form via ajax
-     *
-     * @var boolean
+     * @var boolean Submit the form via ajax
      */
     public $autoClose = false;
+    /**
+     * @var string
+     * @see \yii\bootstrap\Modal
+     */
+    public $header;
+    /**
+     * @var array
+     * @see \yii\bootstrap\Modal
+     */
+    public $headerOptions = [];
+    /**
+     * @var array
+     * @see \yii\bootstrap\Modal
+     */
+    public $bodyOptions = ['class' => 'modal-body'];
+    /**
+     * @var string
+     * @see \yii\bootstrap\Modal
+     */
+    public $footer;
+    /**
+     * @var array
+     * @see \yii\bootstrap\Modal
+     */
+    public $footerOptions = [];
+    /**
+     * @var string
+     * @see \yii\bootstrap\Modal
+     */
+    public $size;
+    /**
+     * @var array|false
+     * @see \yii\bootstrap\Modal
+     */
+    public $closeButton = [];
+    /**
+     * @var array|false
+     * @see \yii\bootstrap\Modal
+     */
+    public $toggleButton = false;
+    /**
+     * @var array
+     * @see \yii\bootstrap\Widget
+     */
+    public $options = [];
+    /**
+     * @var array
+     * @see \yii\bootstrap\BootstrapWidgetTrait
+     */
+    public $clientOptions = [];
+    /**
+     * @var array
+     * @see \yii\bootstrap\BootstrapWidgetTrait
+     */
+    public $clientEvents = [];
 
     /**
      * @var string
      */
     protected $mode = self::MODE_SINGLE;
+    /**
+     * @var \yii\bootstrap\Modal|\yii\bootstrap4\Modal|null
+     */
+    protected $_modal = null;
 
     /**
      * @inheritdocs
@@ -91,6 +145,33 @@ class ModalAjax extends Modal
         if ($this->selector) {
             $this->mode = self::MODE_MULTI;
         }
+
+        $this->modalWidgetConfig = ArrayHelper::merge([
+            'class' => $this->_isBs4() ? 'yii\bootstrap4\Modal' : 'yii\bootstrap\Modal',
+            'id' => $this->getId(false),
+            'headerOptions' => $this->headerOptions,
+            'bodyOptions' => $this->bodyOptions,
+            'footer' => $this->footer,
+            'footerOptions' => $this->footerOptions,
+            'size' => $this->size,
+            'closeButton' => $this->closeButton,
+            'toggleButton' => $this->toggleButton,
+            'options' => $this->options,
+            'clientOptions' => $this->clientOptions,
+            'clientEvents' => $this->clientEvents,
+        ], $this->modalWidgetConfig);
+
+        if ($this->_isBs4()) {
+            $this->modalWidgetConfig = ArrayHelper::merge([
+                'title' => $this->header,
+            ], $this->modalWidgetConfig);
+        } else {
+            $this->modalWidgetConfig = ArrayHelper::merge([
+                'header' => Html::tag('span', $this->header, ['class' => 'modal-title']),
+            ], $this->modalWidgetConfig);
+        }
+
+        $this->_modal = \Yii::createObject($this->modalWidgetConfig);
     }
 
     /**
@@ -98,11 +179,11 @@ class ModalAjax extends Modal
      */
     public function run()
     {
-        parent::run();
+        $this->_modal->run();
 
         /** @var View */
         $view = $this->getView();
-        $id = $this->options['id'];
+        $id = $this->_modal->options['id'];
 
         ModalAjaxAsset::register($view);
 
@@ -213,4 +294,21 @@ class ModalAjax extends Modal
             $view->registerJs($script);
         }
     }
+
+    /**
+     * @return bool
+     */
+    private function _isBs3()
+    {
+        return $this->bootstrapVersion === self::BOOTSTRAP_VERSION_3;
+    }
+
+    /**
+     * @return bool
+     */
+    private function _isBs4()
+    {
+        return $this->bootstrapVersion === self::BOOTSTRAP_VERSION_4;
+    }
+
 }
