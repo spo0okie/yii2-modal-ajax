@@ -1,12 +1,11 @@
 <?php
 
-namespace lo\widgets\modal;
+namespace ivankff\yii2ModalAjax;
 
 use yii\web\AssetBundle;
 
 /**
  * Class ModalAjaxAsset
- * @package lo\widgets\modal
  * @author Lukyanov Andrey <loveorigami@mail.ru>
  */
 class ModalAjaxAsset extends AssetBundle

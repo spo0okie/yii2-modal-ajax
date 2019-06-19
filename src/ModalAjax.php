@@ -1,6 +1,6 @@
 <?php
 
-namespace lo\widgets\modal;
+namespace ivankff\yii2ModalAjax;
 
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
@@ -11,8 +11,6 @@ use yii\web\View;
 
 /**
  * Class ModalAjax
- *
- * @package lo\widgets\modal
  * @author  Lukyanov Andrey <loveorigami@mail.ru>
  */
 class ModalAjax extends Widget
