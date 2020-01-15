@@ -11,7 +11,7 @@ use yii\web\View;
 
 /**
  * Class ModalAjax
- * @author  Lukyanov Andrey <loveorigami@mail.ru>
+ * @author Lukyanov Andrey <loveorigami@mail.ru>
  */
 class ModalAjax extends Widget
 {

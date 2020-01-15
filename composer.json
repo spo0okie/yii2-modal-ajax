@@ -8,11 +8,14 @@
     "ajax-modal"
   ],
   "homepage": "https://github.com/ivankff/yii2-modal-ajax",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "type": "yii2-extension",
   "license": "MIT",
   "authors": [
   ],
+  "require": {
+    "yiisoft/yii2": "~2.0.14"
+  },
   "autoload": {
     "psr-4": {
       "ivankff\\yii2ModalAjax\\\\": "src/"
