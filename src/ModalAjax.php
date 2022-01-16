@@ -22,6 +22,10 @@ class ModalAjax extends Widget
     const BOOTSTRAP_VERSION_4 = 4;
     const BOOTSTRAP_VERSION_5 = 5;
 
+    const SIZE_LARGE = 'lg';
+    const SIZE_MEDIUM = 'md';
+    const SIZE_SMALL = 'sm';
+
     /**
      * events
      */
