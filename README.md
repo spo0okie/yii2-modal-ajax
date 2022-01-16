@@ -1,20 +1,20 @@
 # Yii2-modal-ajax
-[![Latest Stable Version](https://poser.pugx.org/loveorigami/yii2-modal-ajax/v/stable)](https://packagist.org/packages/loveorigami/yii2-modal-ajax) 
-[![Total Downloads](https://poser.pugx.org/loveorigami/yii2-modal-ajax/downloads)](https://packagist.org/packages/loveorigami/yii2-modal-ajax)
+[![Latest Stable Version](https://poser.pugx.org/loveorigami/yii2-modal-ajax/v/stable)](https://packagist.org/packages/a1inani/yii2-modal-ajax)
+[![Total Downloads](https://poser.pugx.org/loveorigami/yii2-modal-ajax/downloads)](https://packagist.org/packages/a1inani/yii2-modal-ajax)
 [![License](https://poser.pugx.org/loveorigami/yii2-modal-ajax/license)](https://packagist.org/packages/loveorigami/yii2-modal-ajax)
 
-A wrapper around Yii2 Bootstrap Modal for using an ActiveForm via AJAX inside.  
+A wrapper around Yii2 Bootstrap Modal for using an ActiveForm via AJAX inside. Added support for Bootstrap 5.  
 
 ## Installation
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
 Either run
 ```sh
-$ php composer.phar require --prefer-dist loveorigami/yii2-modal-ajax "@dev"
+$ php composer.phar require --prefer-dist a1inani/yii2-modal-ajax "@dev"
 ```
 or add
 ```
-"loveorigami/yii2-modal-ajax": "@dev"
+"a1inani/yii2-modal-ajax": "@dev"
 ```
 to the require section of your composer.json file.
 
@@ -85,7 +85,7 @@ echo ModalAjax::widget([
 ]);
 ```
 
-## Usage Twitter Bootstrap 4
+## Usage Twitter Bootstrap 55
 
 ### View
 ```php
@@ -93,7 +93,7 @@ use lo\widgets\modal\ModalAjax;
 
 echo ModalAjax::widget([
     'id' => 'createCompany',
-    'bootstrapVersion' => ModalAjax::BOOTSTRAP_VERSION_4,
+    'bootstrapVersion' => ModalAjax::BOOTSTRAP_VERSION_5,
     'header' => 'Create Company',
     'toggleButton' => [
         'label' => 'New Company',
@@ -105,7 +105,7 @@ echo ModalAjax::widget([
 ]);
 ```
 
-## Usage in grid 
+## Usage in grid
 
 ### Index View - Create (Single Modal Mode)
 ```php
@@ -182,7 +182,7 @@ echo ModalAjax::widget([
 Pjax::begin([
     'id' => 'grid-company-pjax',
     'timeout' => 5000,
-]); 
+]);
 
 echo GridView::widget([
     'dataProvider' => $dataProvider,
@@ -193,7 +193,7 @@ echo GridView::widget([
 		// <a class="btn" href="/site/update?id=20" title="Edit ID-20" data-scenario="goodbye">Goodbye</a>
           ......................
     ],
-]); 
+]);
 
 Pjax::end();
 
@@ -230,7 +230,7 @@ $('#createCompany').on('kbModalShow', function(event, data, status, xhr, selecto
 ```
 
 ### `kbModalShowComplete` (ModalAjax::EVENT_MODAL_SHOW_COMPLETE)
-This event is triggered when ajax call is completed when the form is loaded. Additional parameters available 
+This event is triggered when ajax call is completed when the form is loaded. Additional parameters available
 with this event are:
 - `xhr`: _XMLHttpRequest_, the jQuery XML Http Request object used for this transaction.
 - `textStatus`: _string_, the jQuery AJAX success text status for this transaction.
@@ -267,7 +267,7 @@ $('#createCompany').on('kbModalSubmit', function(event, data, status, xhr, selec
 ```
 
 ### `kbModalSubmitComplete` (ModalAjax::EVENT_MODAL_SUBMIT_COMPLETE)
-This event is triggered when ajax call is completed when the form is submitted. Additional parameters available 
+This event is triggered when ajax call is completed when the form is submitted. Additional parameters available
 with this event are:
 - `xhr`: _XMLHttpRequest_, the jQuery XML Http Request object used for this transaction.
 - `textStatus`: _string_, the jQuery AJAX success text status for this transaction.
