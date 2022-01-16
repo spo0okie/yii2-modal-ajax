@@ -1,5 +1,5 @@
 {
-  "name": "ivankff/yii2-modal-ajax",
+  "name": "a1inani/yii2-modal-ajax",
   "description": "A wrapper around Yii2 Bootstrap Modal for using an ActiveForm via AJAX inside",
   "keywords": [
     "yii2",
@@ -7,7 +7,7 @@
     "modal",
     "ajax-modal"
   ],
-  "homepage": "https://github.com/ivankff/yii2-modal-ajax",
+  "homepage": "https://github.com/a1inani/yii2-modal-ajax",
   "version": "4.1.0",
   "type": "yii2-extension",
   "license": "MIT",
@@ -18,7 +18,7 @@
   },
   "autoload": {
     "psr-4": {
-      "ivankff\\yii2ModalAjax\\\\": "src/"
+      "a1inani\\yii2ModalAjax\\\\": "src/"
     }
   }
 }
