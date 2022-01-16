@@ -1,6 +1,6 @@
 <?php
 
-namespace ivankff\yii2ModalAjax;
+namespace a1inani\yii2ModalAjax;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\StringHelper;
@@ -29,13 +29,13 @@ class CrudAsset extends AssetBundle
      */
     public function init()
     {
-        $isBs4 = StringHelper::startsWith(ArrayHelper::getValue(\Yii::$app->params, 'bsVersion', ''), '4.');
+        $isBs5 = StringHelper::startsWith(ArrayHelper::getValue(\Yii::$app->params, 'bsVersion', ''), '5.');
 
         array_push($this->depends, 'yii\web\YiiAsset');
-        array_push($this->depends, $isBs4 ? 'yii\bootstrap4\BootstrapAsset' : 'yii\bootstrap\BootstrapAsset');
-        array_push($this->depends, $isBs4 ? 'yii\bootstrap4\BootstrapPluginAsset' : 'yii\bootstrap\BootstrapPluginAsset');
+        array_push($this->depends, $isBs5 ? 'yii\bootstrap5\BootstrapAsset' : 'yii\bootstrap\BootstrapAsset');
+        array_push($this->depends, $isBs5 ? 'yii\bootstrap5\BootstrapPluginAsset' : 'yii\bootstrap\BootstrapPluginAsset');
         array_push($this->depends, 'kartik\grid\GridViewAsset');
-        array_push($this->depends, 'ivankff\yii2ModalAjax\JqueryFormAsset');
+        array_push($this->depends, 'a1inani\yii2ModalAjax\JqueryFormAsset');
     }
 
 }
