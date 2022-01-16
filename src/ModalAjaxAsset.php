@@ -1,6 +1,6 @@
 <?php
 
-namespace ivankff\yii2ModalAjax;
+namespace a1inani\yii2ModalAjax;
 
 use yii\web\AssetBundle;
 
