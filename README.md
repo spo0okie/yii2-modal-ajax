@@ -85,7 +85,7 @@ echo ModalAjax::widget([
 ]);
 ```
 
-## Usage Twitter Bootstrap 55
+## Usage Twitter Bootstrap 5
 
 ### View
 ```php
