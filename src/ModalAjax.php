@@ -1,6 +1,6 @@
 <?php
 
-namespace ivankff\yii2ModalAjax;
+namespace a1inani\yii2ModalAjax;
 
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
@@ -20,6 +20,7 @@ class ModalAjax extends Widget
 
     const BOOTSTRAP_VERSION_3 = 3;
     const BOOTSTRAP_VERSION_4 = 4;
+    const BOOTSTRAP_VERSION_5 = 5;
 
     /**
      * events
@@ -145,7 +146,7 @@ class ModalAjax extends Widget
         }
 
         $this->modalWidgetConfig = ArrayHelper::merge([
-            'class' => $this->_isBs4() ? 'yii\bootstrap4\Modal' : 'yii\bootstrap\Modal',
+            'class' => $this->_isBs5() ? 'yii\bootstrap5\Modal' : 'yii\bootstrap\Modal',
             'id' => $this->getId(false),
             'headerOptions' => $this->headerOptions,
             'bodyOptions' => $this->bodyOptions,
@@ -159,7 +160,7 @@ class ModalAjax extends Widget
             'clientEvents' => $this->clientEvents,
         ], $this->modalWidgetConfig);
 
-        if ($this->_isBs4()) {
+        if ($this->_isBs5()) {
             $this->modalWidgetConfig = ArrayHelper::merge([
                 'title' => $this->header,
             ], $this->modalWidgetConfig);
@@ -233,14 +234,14 @@ class ModalAjax extends Widget
                 e.preventDefault();
                 $(this).attr('data-toggle', 'modal');
                 $(this).attr('data-target', '#$id');
-                
+
                 var bs_url = $(this).attr('href');
                 var title = $(this).attr('title');
-                
+
                 if (!title) title = ' ';
-                
+
                 jQuery('#$id').find('.modal-title').html(title);
-                
+
                 jQuery('#$id').kbModalAjax({
                     selector: $(this),
                     url: bs_url,
@@ -307,6 +308,14 @@ class ModalAjax extends Widget
     private function _isBs4()
     {
         return $this->bootstrapVersion === self::BOOTSTRAP_VERSION_4;
+    }
+
+    /**
+     * @return bool
+     */
+    private function _isBs5()
+    {
+        return $this->bootstrapVersion === self::BOOTSTRAP_VERSION_5;
     }
 
 }
