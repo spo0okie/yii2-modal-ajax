@@ -252,6 +252,8 @@ class ModalAjax extends Widget
                     url: bs_url,
                     ajaxSubmit: $this->ajaxSubmit
                 });
+                
+                jQuery('#$id').modal('toggle');
             });
         ");
     }
