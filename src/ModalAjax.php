@@ -183,7 +183,7 @@ class ModalAjax extends Widget
      */
     public function run()
     {
-        $this->_modal->run();
+        echo $this->_modal->run();
 
         /** @var View */
         $view = $this->getView();
