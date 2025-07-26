@@ -1,6 +1,6 @@
 <?php
 
-namespace a1inani\yii2ModalAjax;
+namespace spo0okie\yii2ModalAjax;
 
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;

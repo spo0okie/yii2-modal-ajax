@@ -1,6 +1,6 @@
 <?php
 
-namespace a1inani\yii2ModalAjax;
+namespace spo0okie\yii2ModalAjax;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\StringHelper;
@@ -35,7 +35,7 @@ class CrudAsset extends AssetBundle
         array_push($this->depends, $isBs5 ? 'yii\bootstrap5\BootstrapAsset' : 'yii\bootstrap\BootstrapAsset');
         array_push($this->depends, $isBs5 ? 'yii\bootstrap5\BootstrapPluginAsset' : 'yii\bootstrap\BootstrapPluginAsset');
         array_push($this->depends, 'kartik\grid\GridViewAsset');
-        array_push($this->depends, 'a1inani\yii2ModalAjax\JqueryFormAsset');
+        array_push($this->depends, 'spo0okie\yii2ModalAjax\JqueryFormAsset');
     }
 
 }
